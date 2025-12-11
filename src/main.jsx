@@ -1,13 +1,22 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
-import DemoRefCom from './views/DemoRefCom'
+import DemoSetState from './views/DemoSetState'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <DemoRefCom></DemoRefCom>
+    <DemoSetState></DemoSetState>
   </>
 )
+
+
+// import DemoRefCom from './views/DemoRefCom'
+// const root = createRoot(document.getElementById('root'))
+// root.render(
+//   <>
+//     <DemoRefCom></DemoRefCom>
+//   </>
+// )
 
 // import DemoRef from './views/DemoRef'
 // const root = createRoot(document.getElementById('root'))
