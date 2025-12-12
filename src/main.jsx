@@ -2,12 +2,13 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import DemoSetEffect from './views/DemoSetEffect'
 import DemoSetRef from './views/DemoSetRef'
+import DemosetRef2 from './views/DemoSetRef2'
 
 // import { CountdownTimer } from './views/DemoTimer'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <DemoSetRef></DemoSetRef>
+    <DemosetRef2></DemosetRef2>
   </>
 )
 
