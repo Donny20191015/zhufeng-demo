@@ -1,14 +1,23 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import DemoSetEffect from './views/DemoSetEffect'
 
-
-import DemoUseState from './views/DemoUseState'
+// import { CountdownTimer } from './views/DemoTimer'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <DemoUseState></DemoUseState>
+    <DemoSetEffect></DemoSetEffect>
   </>
 )
+
+
+// import DemoUseState from './views/DemoUseState'
+// const root = createRoot(document.getElementById('root'))
+// root.render(
+//   <>
+//     <DemoUseState></DemoUseState>
+//   </>
+// )
 
 
 // import DemoSetState from './views/DemoSetState'
