@@ -6,11 +6,12 @@ import DemosetRef2 from './views/DemoSetRef2'
 import DemoSetMemo from './views/DemoSetMemo'
 import DemoCustomHook from './views/DemoCustomHook'
 
-// import { CountdownTimer } from './views/DemoTimer'
+import { CountdownTimer } from './views/DemoTimer'
+import InterviewTimer from './views/InterviewTimer'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <DemoCustomHook></DemoCustomHook>
+    <InterviewTimer></InterviewTimer>
   </>
 )
 
