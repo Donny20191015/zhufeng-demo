@@ -8,10 +8,11 @@ import DemoCustomHook from './views/DemoCustomHook'
 
 import { CountdownTimer } from './views/DemoTimer'
 import InterviewTimer from './views/InterviewTimer'
+import DemoPromise from './views/DemoPromise'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <InterviewTimer></InterviewTimer>
+    <DemoPromise></DemoPromise>
   </>
 )
 
