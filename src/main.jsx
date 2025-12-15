@@ -9,10 +9,12 @@ import DemoCustomHook from './views/DemoCustomHook'
 import { CountdownTimer } from './views/DemoTimer'
 import InterviewTimer from './views/InterviewTimer'
 import DemoPromise from './views/DemoPromise'
+import DemoGrid from './views/DemoGrid'
+import InterviewGrid from './views/InterviewGrid'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <DemosetRef2></DemosetRef2>
+    <InterviewGrid></InterviewGrid>
   </>
 )
 
