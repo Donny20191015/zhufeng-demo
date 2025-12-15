@@ -1,23 +1,7 @@
 import { useState, useMemo } from "react";
 import "./InterviewGrid.css";
+import { mockData } from "../assets/Service";
 
-export const mockData = [
-  { id: 1, name: 'Alice Johnson', email: 'alice@example.com', age: 28, department: 'Engineering', salary: 85000 },
-  { id: 2, name: 'Bob Smith', email: 'bob@example.com', age: 35, department: 'Marketing', salary: 72000 },
-  { id: 3, name: 'Carol Davis', email: 'carol@example.com', age: 42, department: 'Sales', salary: 68000 },
-  { id: 4, name: 'David Wilson', email: 'david@example.com', age: 31, department: 'Engineering', salary: 92000 },
-  { id: 5, name: 'Eva Brown', email: 'eva@example.com', age: 26, department: 'HR', salary: 55000 },
-  { id: 6, name: 'Frank Miller', email: 'frank@example.com', age: 38, department: 'Engineering', salary: 105000 },
-  { id: 7, name: 'Grace Lee', email: 'grace@example.com', age: 45, department: 'Finance', salary: 95000 },
-  { id: 8, name: 'Henry Taylor', email: 'henry@example.com', age: 29, department: 'Marketing', salary: 65000 },
-  { id: 9, name: 'Irene Clark', email: 'irene@example.com', age: 33, department: 'Sales', salary: 78000 },
-  { id: 10, name: 'Jack White', email: 'jack@example.com', age: 41, department: 'Engineering', salary: 110000 },
-  { id: 11, name: 'Karen Harris', email: 'karen@example.com', age: 27, department: 'HR', salary: 58000 },
-  { id: 12, name: 'Leo Martin', email: 'leo@example.com', age: 36, department: 'Finance', salary: 89000 },
-  { id: 13, name: 'Mona Scott', email: 'mona@example.com', age: 32, department: 'Engineering', salary: 97000 },
-  { id: 14, name: 'Nathan King', email: 'nathan@example.com', age: 39, department: 'Marketing', salary: 81000 },
-  { id: 15, name: 'Olivia Adams', email: 'olivia@example.com', age: 44, department: 'Sales', salary: 74000 },
-];
 
 const InverviewGrid = () => {
     // 状态定义
@@ -35,44 +19,6 @@ const InverviewGrid = () => {
         setSearchTerm(event.target.value);
         setCurrentPage(1); // 搜索后重置到第一页
     };
-
-    // 处理排序功能
-    const handleSort = (key) => {
-        console.log("handleSort");
-        let direction = 'ascending';
-        if (sortConfig.key === key && sortConfig.direction === 'ascending') {
-        direction = 'descending';
-        }
-        setSortConfig({ key, direction });
-    };
-
-    // 处理分页变化
-    const handlePageChange = (pageNumber) => {
-        console.log("handlePageChange");
-        setCurrentPage(pageNumber);
-    };
-
-    // 处理每页显示数量变化
-    const handleItemsPerPageChange = (event) => {
-        console.log("handleItemsPerPageChange");
-        setItemsPerPage(parseInt(event.target.value));
-        setCurrentPage(1); // 重置到第一页
-    };
-
-    // 处理页面跳转
-    const handlePageJump = () => {
-        console.log("handlePageJump");
-        const pageNum = parseInt(pageJumpInput);
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        
-        if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= totalPages) {
-          setCurrentPage(pageNum);
-          setPageJumpInput('');
-        } else {
-          alert(`请输入有效的页码 (1-${totalPages})`);
-        }
-    };
-
     // 使用useMemo来优化性能，避免每次渲染都重新计算
     const filteredData = useMemo(() => {
         console.log("filteredData");
@@ -85,6 +31,24 @@ const InverviewGrid = () => {
         )
         );
     }, [data, searchTerm]);
+
+    // 处理排序功能
+    const handleSort = (key) => {
+        console.log("handleSort");
+        let direction = 'ascending';
+        if (sortConfig.key === key && sortConfig.direction === 'ascending') {
+        direction = 'descending';
+        }
+        setSortConfig({ key, direction });
+    };
+    // 获取排序指示器
+    const getSortIndicator = (key) => {
+        console.log("getSortIndicator");
+        if (sortConfig.key === key) {
+        return sortConfig.direction === 'ascending' ? '↑' : '↓';
+        }
+        return '';
+    };
 
     // 搜索、排序和分页数据处理
     const processedData = useMemo(() => {
@@ -115,27 +79,32 @@ const InverviewGrid = () => {
         return sortableData;
     }, [filteredData, sortConfig]);
 
-    // 计算当前页的数据
-    const currentItems = useMemo(() => {
-        console.log("currentItems");
 
-        const indexOfLastItem = currentPage * itemsPerPage;
-        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-        return processedData.slice(indexOfFirstItem, indexOfLastItem);
-    }, [processedData, currentPage, itemsPerPage]);
-
-    // 计算总页数
-    const totalPages = Math.ceil(processedData.length / itemsPerPage);
-
-    // 生成页码按钮
-    const pageNumbers = [];
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
-
+    // 处理每页显示数量变化：一个页面上总共显示多少条数据=>{3, 5, 10, 15, 20}条数据
+    const handleItemsPerPageChange = (event) => {
+        console.log("handleItemsPerPageChange");
+        setItemsPerPage(parseInt(event.target.value));
+        setCurrentPage(1); // 重置到第一页
+    };
+    // 处理分页变化
+    const handlePageChange = (pageNumber) => {
+        console.log("handlePageChange");
+        setCurrentPage(pageNumber);
+    };
+    // 计算出总页码数，采用向上取整
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
     // 显示部分页码（避免过多按钮）
     const getVisiblePageNumbers = () => {
         console.log("getVisiblePageNumbers");
+        // 计算总页数
+        const totalPages = Math.ceil(processedData.length / itemsPerPage);
+
+        // 生成页码按钮
+        const pageNumbers = [];
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbers.push(i);
+        }
+        
         const maxVisiblePages = 5;
         const halfVisible = Math.floor(maxVisiblePages / 2);
         
@@ -153,15 +122,35 @@ const InverviewGrid = () => {
         
         return pageNumbers.slice(startPage - 1, endPage);
     };
-
-    // 获取排序指示器
-    const getSortIndicator = (key) => {
-        console.log("getSortIndicator");
-        if (sortConfig.key === key) {
-        return sortConfig.direction === 'ascending' ? '↑' : '↓';
+    // 处理页面跳转
+    const handlePageJump = () => {
+        console.log("handlePageJump");
+        const pageNum = parseInt(pageJumpInput);
+        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+        
+        if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= totalPages) {
+          setCurrentPage(pageNum);
+          setPageJumpInput('');
+        } else {
+          alert(`请输入有效的页码 (1-${totalPages})`);
         }
-        return '';
     };
+
+
+
+    // 计算当前页的数据
+    // 当搜索的时候、排序的时候、分页的时候，都会触发currentItems的重新计算
+    const currentItems = useMemo(() => {
+        console.log("currentItems");
+
+        // 计算当前页的起始和结束索引
+        const indexOfLastItem = currentPage * itemsPerPage;
+        // 计算当前页的第一个条目的索引
+        const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+        // 根据不同的页码数，截取对应的数据
+        return processedData.slice(indexOfFirstItem, indexOfLastItem);
+    }, [processedData, currentPage, itemsPerPage]);
 
     return (
     <div className="list-container">

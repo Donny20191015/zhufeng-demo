@@ -11,10 +11,11 @@ import InterviewTimer from './views/InterviewTimer'
 import DemoPromise from './views/DemoPromise'
 import DemoGrid from './views/DemoGrid'
 import InterviewGrid from './views/InterviewGrid'
+import InterviewPromise from './views/InterviewPromise'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <InterviewGrid></InterviewGrid>
+    <InterviewPromise></InterviewPromise>
   </>
 )
 
