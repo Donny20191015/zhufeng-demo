@@ -72,5 +72,6 @@ export const mockData = [
   { id: 70, name: 'Oliver Sanders', email: 'oliver@example.com', age: 44, department: 'Marketing', salary: 80000 },
   { id: 71, name: 'Aiden Powell', email: 'aiden@example.com', age: 38, department: 'Sales', salary: 76000 },
   { id: 72, name: 'Charlotte Foster', email: 'charlotte.f@example.com', age: 32, department: 'HR', salary: 64000 },
-  { id: 73, name: 'Benjamin Gray', email: 'benjamin.g@example.com', age: 50, department: 'Finance', salary: 105000 }
+  { id: 73, name: 'Benjamin Gray', email: 'benjamin.g@example.com', age: 50, department: 'Finance', salary: 105000 },
+  { id: 74, name: 'Benjamin Gray', email: 'benjamin.g@example.com', age: 50, department: 'Finance', salary: 105000 }
 ];

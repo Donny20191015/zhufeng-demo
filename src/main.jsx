@@ -1,21 +1,11 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import DemoSetEffect from './views/DemoSetEffect'
-import DemoSetRef from './views/DemoSetRef'
-import DemosetRef2 from './views/DemoSetRef2'
-import DemoSetMemo from './views/DemoSetMemo'
-import DemoCustomHook from './views/DemoCustomHook'
 
-import { CountdownTimer } from './views/DemoTimer'
-import InterviewTimer from './views/InterviewTimer'
-import DemoPromise from './views/DemoPromise'
-import DemoGrid from './views/DemoGrid'
-import InterviewGrid from './views/InterviewGrid'
-import InterviewPromise from './views/InterviewPromise'
+import Main from './views/demo-routers/Main'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>
-    <InterviewPromise></InterviewPromise>
+    <Main></Main>
   </>
 )
 

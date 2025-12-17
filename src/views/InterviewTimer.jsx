@@ -5,10 +5,6 @@ const useTimer = (intialTime) => {
     const [pause, setPause] = useState(null);
     const [interalValId, setIntervalId] = useState(null);
 
-    useEffect(() => {
-        console.log();
-        
-    })
     let timeId;
 
     const startTime = () => {

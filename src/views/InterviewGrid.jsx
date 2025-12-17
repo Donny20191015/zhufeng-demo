@@ -3,6 +3,13 @@ import "./InterviewGrid.css";
 import { mockData } from "../assets/Service";
 
 
+const unique = () => {
+  const uni = [...mockData.reduce((map, obj) => map.set(obj.name, obj), new Map()).values()];
+  console.log("uni:", uni);
+}
+
+unique();
+
 const InverviewGrid = () => {
     // 状态定义
     const [data, setData] = useState(mockData); // 原始数据
