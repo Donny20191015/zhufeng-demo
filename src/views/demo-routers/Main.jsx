@@ -32,7 +32,6 @@ const Main = () => {
                 </Routes>
             </Router>
         </>
-
     );
 }
 export default Main;
