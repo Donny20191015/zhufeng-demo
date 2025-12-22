@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Hash路由机制</title>
+    </head>
+    <body>
+        <!-- 在超链接里加上 #/xxx 这样，根据点击不同的页面，hash值获得的也不一样即: /product
+            我们称这样为Hash导航 
+        -->
+        <nav class="nav-box">
+            <a href="#/">首页</a>
+            <a href="#/product">产品中心</a>
+            <a href="#/personal">个人中心</a>
+        </nav>
+        <div class="view-box"></div>
+
+        <!-- 导入JS -->
+        <script>
+            // 获取需要替换的容器，会根据不同的页面显示不同的内容
+            const viewBox = document.querySelector(".view-box");
+
+            // 配置的路由列表：每当我们重新加载页面、或者路由切换（切换Hash值），都先到这个路由表中进行匹配；根据当前页面的哈希值，匹配出渲染的内容（组件）
+            //  path：为路径
+            //  component：为真正的组件，这里用string代替
+            const routers = [
+                {
+                    path: "/",
+                    component: "展示首页内容"
+                },
+                {
+                    path: "/product",
+                    component: "展示产品中心内容"
+                },
+                {
+                    path: "/personal",
+                    component: "展示个人中心内容"
+                }
+            ];
+
+            // 路由匹配机制
+            // 根据不同的hash值来匹配到不同的页面
+            const matchRouter = () => {
+                let hash;
+                let component;
+                // 使用location对象获取到hash值，点击到不同的页面会获取到不同的值
+                // 如#/, #/product, #/personal
+                // 使用substring去掉#
+                hash = location.hash.substring(1);
+
+                // 循环匹配hash值，设置component
+                routers.forEach(item => {
+                    if (item.path === hash) {
+                        component = item.component;
+                    }
+                });
+
+                // 给容器设置组件（这里用string替代）
+                viewBox.innerHTML = component;
+            }
+            // 执行函数
+            matchRouter();
+
+            // 使用window对象的事件onhashchange，当hash值改变的时候执行路由匹配机制函数
+            window.onhashchange = matchRouter;
+        </script>
+    </body>
+</html>

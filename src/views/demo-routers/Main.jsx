@@ -6,6 +6,9 @@ import A3 from "./AChild/A3";
 import B from "./B";
 import C from "./C";
 import HomeHead from './HomeHead';
+import React, { Suspense } from 'react';
+
+// const B = React.lazy(() => import("./B"));
 
 const Main = () => {
     // console.log(Navigate);

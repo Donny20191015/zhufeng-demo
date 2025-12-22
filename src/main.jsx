@@ -1,12 +1,14 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider"
+import DemoArray from "./views/DemoArray";
 
 import Main from './views/demo-routers/Main'
 const root = createRoot(document.getElementById('root'))
 root.render(
-  <>
+  <EmpoyeeContextProvider>
     <Main></Main>
-  </>
+  </EmpoyeeContextProvider>
 )
 
 
