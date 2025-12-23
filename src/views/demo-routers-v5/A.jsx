@@ -1,9 +1,11 @@
-import { Link, Switch, Redirect, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './A.css';
 
-import A1 from './a/A1';
-import A2 from './a/A2';
-import A3 from './a/A3';
+// import A1 from './a/A1';
+// import A2 from './a/A2';
+// import A3 from './a/A3';
+import RouterView from './routes/Index';
+import aRoutes from './routes/ARoutes';
 
 const A = () => {
     return <div className='a-box'>
@@ -17,12 +19,13 @@ const A = () => {
 
         <div className='a-content'>
             {/* 配置二级路由的匹配规则：需要把一级路由地址带上，不能省略 */}
-            <Switch>
+            {/* <Switch>
                 <Redirect from="/a" to="/a/a1" exact />
                 <Route path="/a/a1" component={A1} />
                 <Route path="/a/a2" component={A2} />
                 <Route path="/a/a3" component={A3} />
-            </Switch>
+            </Switch> */}
+            <RouterView routes={aRoutes}/>
         </div>
     </div>
 }
