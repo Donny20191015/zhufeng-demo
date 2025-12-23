@@ -25,7 +25,7 @@
             const navBox = document.querySelector(".nav-box");
 
             // 点击A实现页面地址切换，但是不能刷新页面
-            navBox.onclick = function (e) {
+            navBox.addEventListener("click", function (e) {
                 const target = e.target
                 if (target.tagName === "A") {
                     // 阻止A标签页面跳转&刷新的默认行为
@@ -34,7 +34,7 @@
                     // 执行函数去路由匹配
                     matchRouter();
                 }
-            }
+            });
 
             // 配置的路由列表：每当我们重新加载页面、或者路由切换（切换Hash值），都先到这个路由表中进行匹配；根据当前页面的哈希值，匹配出渲染的内容（组件）
             //  path：为路径

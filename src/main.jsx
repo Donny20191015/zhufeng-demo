@@ -3,11 +3,11 @@ import './index.css'
 import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider"
 import DemoArray from "./views/DemoArray";
 
-import Main from './views/demo-routers/Main'
+import MainV5 from './views/demo-routers-v5/MainV5'
 const root = createRoot(document.getElementById('root'))
 root.render(
   <EmpoyeeContextProvider>
-    <Main></Main>
+    <MainV5></MainV5>
   </EmpoyeeContextProvider>
 )
 
