@@ -7,7 +7,7 @@ class DemoRefCom extends React.Component {
                 <Child1 ref={x=>this.child1=x}></Child1>
                 <Child2 ref={x=>this.child2=x}></Child2>
             </>
-        )
+        );
     }
 
     componentDidMount() {

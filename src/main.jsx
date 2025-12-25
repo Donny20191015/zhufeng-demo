@@ -1,13 +1,42 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
+import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider"
+import DemoArray from "./views/DemoArray";
 
-import DemoRefCom from './views/DemoRefCom'
+import MainV5 from './views/demo-routers-v5/MainV5'
 const root = createRoot(document.getElementById('root'))
 root.render(
-  <>
-    <DemoRefCom></DemoRefCom>
-  </>
+  <EmpoyeeContextProvider>
+    <MainV5></MainV5>
+  </EmpoyeeContextProvider>
 )
+
+
+// import DemoUseState from './views/DemoUseState'
+// const root = createRoot(document.getElementById('root'))
+// root.render(
+//   <>
+//     <DemoUseState></DemoUseState>
+//   </>
+// )
+
+
+// import DemoSetState from './views/DemoSetState'
+// const root = createRoot(document.getElementById('root'))
+// root.render(
+//   <>
+//     <DemoSetState></DemoSetState>
+//   </>
+// )
+
+
+// import DemoRefCom from './views/DemoRefCom'
+// const root = createRoot(document.getElementById('root'))
+// root.render(
+//   <>
+//     <DemoRefCom></DemoRefCom>
+//   </>
+// )
 
 // import DemoRef from './views/DemoRef'
 // const root = createRoot(document.getElementById('root'))

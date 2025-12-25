@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>History路由机制</title>
+    </head>
+    <body>
+        <!-- 在超链接里加上 #/xxx 这样，根据点击不同的页面，hash值获得的也不一样即: /product
+            我们称这样为Hash导航 
+        -->
+        <nav class="nav-box">
+            <a href="/">首页</a>
+            <a href="/product">产品中心</a>
+            <a href="/personal">个人中心</a>
+        </nav>
+        <div class="view-box"></div>
+
+        <!-- 注意：这个页面可能运行不起来，因为运行的时候需要在服务器上运行，
+                    直接在本地打开页面无效，有些方法拿不到正确的值 
+                    如：location.pathname, e.target
+        -->
+        <!-- 导入JS -->
+        <script>
+            // 获取需要替换的容器，会根据不同的页面显示不同的内容
+            const viewBox = document.querySelector(".view-box");
+            const navBox = document.querySelector(".nav-box");
+
+            // 点击A实现页面地址切换，但是不能刷新页面
+            navBox.addEventListener("click", function (e) {
+                const target = e.target
+                if (target.tagName === "A") {
+                    // 阻止A标签页面跳转&刷新的默认行为
+                    e.preventDefault();
+                    history.pushState({}, "", target.href);
+                    // 执行函数去路由匹配
+                    matchRouter();
+                }
+            });
+
+            // 配置的路由列表：每当我们重新加载页面、或者路由切换（切换Hash值），都先到这个路由表中进行匹配；根据当前页面的哈希值，匹配出渲染的内容（组件）
+            //  path：为路径
+            //  component：为真正的组件，这里用string代替
+            const routers = [
+                {
+                    path: "/",
+                    component: "展示首页内容"
+                },
+                {
+                    path: "/product",
+                    component: "展示产品中心内容"
+                },
+                {
+                    path: "/personal",
+                    component: "展示个人中心内容"
+                }
+            ];
+
+            // 路由匹配机制
+            // 根据不同的hash值来匹配到不同的页面
+            const matchRouter = () => {
+                let path;
+                let component;
+                // 使用location对象获取到pathname值，点击到不同的页面会获取到不同的值
+                // 如#/, /product, /personal
+                path = location.pathname;
+
+                // 循环匹配path值，设置component
+                routers.forEach(item => {
+                    if (item.path === path) {
+                        component = item.component;
+                    }
+                });
+
+                // 给容器设置组件（这里用string替代）
+                viewBox.innerHTML = component;
+            }
+
+            // 默认展示页面
+            history.pushState({}, "", "/");
+            matchRouter();
+
+            // 监听popstate地址变化事件；此事件：执行go/forward/back等方法可以触发，但是执行pushState/replaceState等方法无法触发
+            window.onpopstate = matchRouter;
+        </script>
+    </body>
+</html>
