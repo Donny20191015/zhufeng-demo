@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { createContext, useContext } from "react";
-import Empoyees from "../assets/Empoyees.json"
+import Empoyees from "../../assets/Empoyees.json"
 
 const context = createContext();
 const ContextProvider = ({children}) => {
