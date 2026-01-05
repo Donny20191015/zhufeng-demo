@@ -1,13 +1,12 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider"
-import DemoArray from "./views/DemoArray";
 
-import MainV5 from './views/demo-routers-v5/MainV5'
+import VoteStatic from './views/Vote-static';
 const root = createRoot(document.getElementById('root'))
 root.render(
   <EmpoyeeContextProvider>
-    <MainV5></MainV5>
+    <VoteStatic></VoteStatic>
   </EmpoyeeContextProvider>
 )
 

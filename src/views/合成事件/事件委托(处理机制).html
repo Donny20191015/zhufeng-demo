@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #root {
+            width: 300px;
+            height: 300px;
+            background: lightblue;
+        }
+        #outer {
+            width: 200px;
+            height: 200px;
+            background: lightgreen;
+        }
+        #inner {
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="center">
+        <div id="outer" class="center">
+            <div id="inner" class="center"></div>
+        </div>
+    </div>
+
+    <!-- <script>
+        const html = document.documentElement,
+            body = document.body,
+            root = document.querySelector("#root"),
+            outer = document.querySelector("#outer"),
+            inner = document.querySelector("#inner");
+
+        root.addEventListener('click', function(ev) {
+            console.log('root 捕获');
+        }, true);
+        root.addEventListener('click', function(ev) {
+            console.log('root 冒泡');
+        }, false);
+
+        outer.addEventListener('click', function(ev) {
+            console.log('outer 捕获');
+        }, true);
+        outer.addEventListener('click', function(ev) {
+            console.log('outer 冒泡');
+        }, false);
+
+        inner.addEventListener('click', function(ev) {
+            console.log('inner 捕获');
+        }, true);
+        inner.addEventListener('click', function(ev) {
+            // ev.stopPropagation();
+            // ev.stopImmediatePropagation();
+            console.log('inner 冒泡1');
+        }, false);
+        /* inner.addEventListener('click', function(ev) {
+            console.log('inner 冒泡2');
+        }, false); */
+    </script> -->
+
+    <script>
+        const html = document.documentElement,
+            body = document.body,
+            root = document.querySelector("#root"),
+            outer = document.querySelector("#outer"),
+            inner = document.querySelector("#inner");
+
+        body.addEventListener('click', function(ev) {
+            const target = ev.target,
+                id = target.id;
+            
+            if (id === "root") {
+                console.log("root");
+            } else if (id === "outer") {
+                console.log("outer");
+            } else if (id === "inner") {
+                console.log("inner");
+            } else {
+                console.log("body");
+            }
+        })
+
+        /* // 传统的方法：必须给每个元素都绑定上事件，然后做处理
+        root.addEventListener('click', function(ev) {
+            console.log("root");
+        });
+        outer.addEventListener('click', function(ev) {
+            console.log("outer");
+        });
+        inner.addEventListener('click', function(ev) {
+            console.log("inner");
+        }); */
+    </script>
+</body>
+</html>
