@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>合成事件原理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #root {
+            width: 300px;
+            height: 300px;
+            background: lightblue;
+        }
+        #outer {
+            width: 200px;
+            height: 200px;
+            background: lightgreen;
+        }
+        #inner {
+            width: 100px;
+            height: 100px;
+            background: lightcoral;
+        }
+    </style>
+</head>
+<body>
+    <div id="root" class="center">
+        <div id="outer" class="center">
+            <div id="inner" class="center"></div>
+        </div>
+    </div>
+
+    <script>
+        const root = document.querySelector("#root"),
+            outer = document.querySelector("#outer"),
+            inner = document.querySelector("#inner");
+
+
+        /* // 经过视图渲染解析，outer/inner上都有onXxx/onXxxCapture这样的属性
+        <div className="outer"
+            onClick={() => {console.log('outer 冒泡【合成】');}}
+            onClickCapture={() => {console.log('outer 捕获【合成】');}}>
+            <div className="inner" 
+                onClick={() => {console.log('inner 冒泡【合成】');}}
+                onClickCapture={() => {console.log('inner 捕获【合成】');}}>
+            </div>
+        </div> */
+
+        // 经过视图渲染解析，outer/inner上都有onXxx/onXxxCapture这样的属性
+        outer.onClick = () => { console.log('outer 冒泡【合成】'); }
+        outer.onClickCapture = () => { console.log('outer 捕获【合成】'); }
+        inner.onClick = () => { console.log('inner 冒泡【合成】'); }
+        inner.onClickCapture = () => { console.log('inner 捕获【合成】'); }
+
+        // 给#root做事件绑定
+        root.addEventListener('click', (ev) => {
+            let path = ev.path;     // path：【事件源 -> ...... -> window】所有祖先元素
+            [...path].reverse().forEach((ele) => {  // 捕获的顺序应该是从window 到 事件源的，所有倒置一下数组之后遍历元素后，执行onClickCapture
+                // 当遍历到outer/inner元素的时候，即执行onClickCapture事件
+                let handle = ele.onClickCapture;
+                if (handle) handle();
+            });
+        }, true);
+
+        root.addEventListener('click', (ev) => {
+            let path = ev.path;     // path：【事件源 -> ...... -> window】所有祖先元素
+            path.forEach((ele) => { // 冒泡的顺序应该是从 事件源 到 window的，所以数组直接开始遍历元素后，执行onClick
+                // 当遍历到outer/inner元素的时候，即执行onClick事件
+                let handle = ele.onClick;
+                if (handle) handle();
+            });
+        }, false);
+    </script>
+</body>
+</html>
