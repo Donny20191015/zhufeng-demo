@@ -4,6 +4,11 @@ import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider"
 
 import Demo5 from './views/合成事件/Demo5';
 import Vote from './views/Vote';
+
+/* // 使用FastClick解决移动端使用click事件的300ms延迟的问题, 配合合成事件中的Demo6.jsx
+import FastClick from 'fastclick';
+FastClick.attach(document.body); */
+
 const root = createRoot(document.getElementById('root'))
 root.render(
   <>

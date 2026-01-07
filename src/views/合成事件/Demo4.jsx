@@ -1,5 +1,6 @@
 import React from "react";
 
+/* React(18/16)中合成事件的处理原理 */
 class Demo4 extends React.Component {
     render() {
         return <div className="outer"

@@ -1,5 +1,8 @@
 import React from "react";
 
+/* 解决移动端click会存在300ms延迟的问题
+    自己写touchStart/touchMove/touchEnd来解决
+*/
 class Demo5 extends React.Component {
 
     // 手指按下：记录手指的起始坐标
