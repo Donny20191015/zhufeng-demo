@@ -1,21 +1,20 @@
-import { createRoot } from 'react-dom/client'
-import './index.less'
-import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider"
+import { createRoot } from "react-dom/client";
+import "./index.less";
+import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider";
 
-import Demo5 from './views/合成事件/Demo5';
-import Vote from './views/Vote';
+import Demo7 from "./views/合成事件/Demo7";
+import Vote from "./views/组件通信/函数组件/Vote";
 
 /* // 使用FastClick解决移动端使用click事件的300ms延迟的问题, 配合合成事件中的Demo6.jsx
 import FastClick from 'fastclick';
 FastClick.attach(document.body); */
 
-const root = createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById("root"));
 root.render(
   <>
-    <Demo5></Demo5>
+    <Vote></Vote>
   </>
-)
-
+);
 
 // import DemoUseState from './views/DemoUseState'
 // const root = createRoot(document.getElementById('root'))
@@ -25,7 +24,6 @@ root.render(
 //   </>
 // )
 
-
 // import DemoSetState from './views/DemoSetState'
 // const root = createRoot(document.getElementById('root'))
 // root.render(
@@ -33,7 +31,6 @@ root.render(
 //     <DemoSetState></DemoSetState>
 //   </>
 // )
-
 
 // import DemoRefCom from './views/DemoRefCom'
 // const root = createRoot(document.getElementById('root'))
@@ -97,7 +94,6 @@ root.render(
 //   </>
 
 // )
-
 
 // import DemoOne from './views/DemoOne.jsx'
 // const root = createRoot(document.getElementById('root'))
