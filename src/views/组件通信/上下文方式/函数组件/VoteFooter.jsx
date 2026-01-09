@@ -1,9 +1,10 @@
 import { Button } from "antd";
 import PropTypes from "prop-types";
-import { memo } from "react";
+import { memo, useContext } from "react";
+import ThemeContext from "../ThemeContext";
 
-const VoteFooter = (props) => {
-  let { change } = props;
+const VoteFooter = () => {
+  let { change } = useContext(ThemeContext);
   return (
     <div className="footer">
       <Button type="primary" onClick={change.bind(null, "sup")}>
@@ -18,7 +19,7 @@ const VoteFooter = (props) => {
 // memo函数会对props做浅比较，如果props值未改变，则不会重新渲染
 export default memo(VoteFooter);
 
-/* 属性规则校验 */
+/* // 属性规则校验
 VoteFooter.propTypes = {
   change: PropTypes.func.isRequired,
-};
+}; */

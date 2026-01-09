@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import "./Vote.less";
 import VoteMain from "./VoteMain";
 import VoteFooter from "./VoteFooter";
+import ThemeContext from "../ThemeContext";
 
 const Vote = () => {
   const [supNum, setSupNum] = useState(10);
@@ -21,14 +22,22 @@ const Vote = () => {
   );
 
   return (
-    <div className="vote-box">
-      <div className="header">
-        <h2 className="title">React前端框架</h2>
-        <span className="num">{supNum + oppNum}</span>
+    <ThemeContext.Provider
+      value={{
+        supNum,
+        oppNum,
+        change,
+      }}
+    >
+      <div className="vote-box">
+        <div className="header">
+          <h2 className="title">React前端框架</h2>
+          <span className="num">{supNum + oppNum}</span>
+        </div>
+        <VoteMain />
+        <VoteFooter />
       </div>
-      <VoteMain supNum={supNum} oppNum={oppNum} />
-      <VoteFooter change={change} />
-    </div>
+    </ThemeContext.Provider>
   );
 };
 

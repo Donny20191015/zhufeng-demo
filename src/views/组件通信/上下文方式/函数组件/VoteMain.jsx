@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
-import { useMemo } from "react";
+import { useContext, useMemo } from "react";
+import ThemeContext from "../ThemeContext";
 
-const VoteMain = (props) => {
-  const { supNum, oppNum } = props;
+const VoteMain = () => {
+  const { supNum, oppNum } = useContext(ThemeContext);
+
   const total = supNum + oppNum;
 
   // 基于useMemo实现复杂函数的“计算缓存”
@@ -20,7 +22,7 @@ const VoteMain = (props) => {
 };
 export default VoteMain;
 
-/* 属性规则校验 */
+/* // 属性规则校验
 VoteMain.defaultProps = {
   supNum: 0,
   oppNum: 0,
@@ -28,4 +30,4 @@ VoteMain.defaultProps = {
 VoteMain.propTypes = {
   supNum: PropTypes.number,
   oppNum: PropTypes.number,
-};
+}; */

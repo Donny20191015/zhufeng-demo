@@ -3,7 +3,8 @@ import "./index.less";
 import EmpoyeeContextProvider from "./context/EmpoyeeContextProvider";
 
 import Demo7 from "./views/合成事件/Demo7";
-import Vote from "./views/组件通信/上下文方式/类组件/Vote";
+import Vote from "./views/组件通信/上下文方式/函数组件/Vote";
+import App from "./App";
 
 /* // 使用FastClick解决移动端使用click事件的300ms延迟的问题, 配合合成事件中的Demo6.jsx
 import FastClick from 'fastclick';
@@ -12,7 +13,7 @@ FastClick.attach(document.body); */
 const root = createRoot(document.getElementById("root"));
 root.render(
   <>
-    <Vote></Vote>
+    <App></App>
   </>
 );
 
